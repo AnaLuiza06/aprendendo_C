@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+int main()
+{
+    int dia_nascimento = 6, mes_nascimento = 12, ano_nascimento = 2004;
+    int dia_atual = 01, mes_atual = 03, ano_atual = 2023;
+    int dia_total, mes_total, ano_total;
+    int meses[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int mes = mes_nascimento - 1;
+    
+    if(mes_atual > mes_nascimento){
+        ano_total = ano_atual - ano_nascimento;
+        if(dia_atual > dia_nascimento){
+            mes_total = mes_atual - mes_nascimento;
+            dia_total = dia_atual - dia_nascimento;
+        }
+        else if(dia_atual < dia_nascimento){
+            mes_total = mes_atual - mes_nascimento - 1;
+            dia_total = (meses[mes] - dia_nascimento) + dia_atual;
+        }
+        else{
+            dia_total = 0;
+            mes_total = mes_atual - mes_nascimento;
+        }
+    }
+    
+    else if(mes_atual < mes_nascimento){
+        ano_total = ano_atual - ano_nascimento - 1;
+        if(dia_atual < dia_nascimento){
+            mes_total = (12 - mes_nascimento) + mes_atual - 1;
+            dia_total = (meses[mes] - dia_nascimento) + dia_atual;
+        }
+        else if(dia_atual > dia_nascimento){
+            mes_total = (12 - mes_nascimento) + mes_atual;
+            dia_total = dia_atual - dia_nascimento;
+        }
+        else{
+            dia_total = 0;
+            mes_total = (12 - mes_nascimento) + mes_total;
+        }
+        
+    }
+    else{
+        if(dia_atual < dia_nascimento){
+            ano_total = ano_atual - ano_nascimento - 1;
+            mes_total = (12 - mes_nascimento) + mes_atual - 1;
+            dia_total = (meses[mes] - dia_nascimento) + dia_atual;
+        }
+        else if(dia_atual > dia_nascimento){
+            ano_total = ano_atual - ano_nascimento;
+            mes_total = (12 - mes_nascimento) + mes_atual;
+            dia_total = dia_nascimento - dia_atual;
+        }
+        else{
+            ano_total = ano_atual - ano_nascimento;
+            mes_total = 0;
+            dia_total = 0;
+        }
+    }
+    printf("Anos: %d \n", ano_total);
+    printf("Meses: %d \n", mes_total);
+    printf("Dias: %d \n", dia_total);
+
+    return 0;
+}
